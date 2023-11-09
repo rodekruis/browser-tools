@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Convert Image to Data-URL in your browser</title>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css" />
+    <style>
+      /* Custom Style rules */
+      #preview {
+        background-position: center center;
+        background-repeat: no-repeat;
+        /* background-size: 100% auto; */
+        aspect-ratio: 16 / 9;
+        border: 1px solid currentColor;
+      }
+    </style>
+    <script>
+      function convertToBase64(event) {
+        const file = event.target.elements.file.files[0];
+        const reader = new FileReader();
+
+        const output = document.getElementById('output');
+        const preview = document.getElementById('preview');
+
+        output.value = '';
+        preview.style = '';
+
+        reader.onload = (event) => {
+          const imageBase64 = event.target.result;
+
+          output.value = imageBase64;
+          preview.style.backgroundImage = 'url("' + imageBase64 + '")';
+        };
+
+        reader.readAsDataURL(file);
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>
+      Convert Image to Data-URL
+      <small>(in your browser)</small>
+    </h1>
+
+    <form action="" onsubmit="convertToBase64(event); return false;">
+      <input id="file" type="file" />
+      <button type="submit"><strong>Convert</strong></button>
+    </form>
+
+    <code>
+      <textarea
+        id="output"
+        spellcheck="false"
+        readonly
+        rows="8"
+        cols="80"
+      ></textarea>
+    </code>
+
+    <p>Preview:</p>
+
+    <div id="preview"></div>
+
+    <p>
+      Use it in HTML as:
+      <code>
+        <textarea readonly cols="80" rows="5">
+        <!-- As a regular image: -->
+        <img alt="" src="data:...">
+
+        <!-- As meta-data in the <head>: -->
+        <link rel="icon" href="data:...">
+      </textarea
+        >
+      </code>
+    </p>
+    <p>
+      Use it in CSS as:
+      <code>
+        <textarea readonly cols="80" rows="4">
+        #example .element-selector {
+          background-image: url("data:image/...");
+        }
+      </textarea
+        >
+      </code>
+    </p>
+  </body>
+</html>
