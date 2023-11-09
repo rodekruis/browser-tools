@@ -1,0 +1,14 @@
+{
+  "name": "rodekruis-browser-tools",
+  "author": "510",
+  "homepage": "https://rodekruis.github.io/browser-tools/",
+  "license": "Apache-2.0",
+  "repository": "github:rodekruis/browser-tools",
+  "prettier": {
+    "arrowParens": "always",
+    "editorconfig": true,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
